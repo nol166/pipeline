@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes');
-const { client } = require('./config/client');
+const { client } = require('./client/client');
 
 client.connect((err) =>
   err ? console.log(err) : console.log('Connected to MongoDB Atlas 🚀')
