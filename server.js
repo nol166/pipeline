@@ -1,21 +1,14 @@
-// dot env
-require('dotenv').config();
+const express = require('express');
+const app = express();
+const routes = require('./routes');
+const { client } = require('./config/client');
 
-const { MongoClient } = require('mongodb');
-const uri = process.env.MONGODB_URI;
+client.connect((err) =>
+  err ? console.log(err) : console.log('Connected to MongoDB Atlas 🚀')
+);
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-client.connect((err) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
-  const collection = client.db('test').collection('devices');
-  // perform actions on the collection object
-  client.close();
+client.on('open', () => {
+  app.use(express.json());
+  app.use(routes);
+  app.listen(3000, () => console.log('Server running on port 3000 🚀'));
 });
