@@ -13,7 +13,7 @@ const renderMovies = async () => {
   // empty out the target element
   targetEl.innerHTML = '';
 
-  document.getElementById('movies').innerHTML = '';
+  // document.getElementById('movies').innerHTML = '';
   movies.forEach((movie) => {
     console.log(movie._id);
     const movieEl = document.createElement('movie');
