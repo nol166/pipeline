@@ -47,9 +47,6 @@ router.get('/best/:page', (req, res) => {
       },
     },
     {
-      $sort: { boxOffice: -1 },
-    },
-    {
       $skip: page * 10,
     },
     {
