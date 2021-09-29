@@ -1,14 +1,17 @@
 const router = require('express').Router();
-const { client } = require('../../client/client');
+const { client } = require('../../db/connection');
 
 const movies = client.db('sample_mflix').collection('movies');
 
 // Find all movies from mongodb
-router.get('/', (req, res) => {
+router.get('/:page?', (req, res) => {
+  let pageNumber = req.params.page || 1;
   movies
     .find({})
-    .toArray((err, docs) =>
-      err ? res.status(500).send(err) : res.status(200).send(docs)
+    .limit(20)
+    .skip(pageNumber * 20)
+    .toArray((err, results) =>
+      err ? res.status(500).send(err) : res.status(200).send(results)
     );
 });
 
@@ -18,17 +21,23 @@ router.get('/year/:year'),
     const { year } = req.params;
     movies
       .find({ year: parseInt(year, 10) })
+      .limit(20)
       .toArray((err, results) =>
         err ? res.status(500).send(err) : res.status(200).send(results)
       );
   };
 
 // Route that will accept an aggregation query as the body and return the results sorted by box office
-router.get('/best', (req, res) => {
+router.get('/best/:page', (req, res) => {
+  const { page } = req.params;
+  console.log(
+    '🚀 - file: movieRoutes.js - line 31 - router.get - pageNumber',
+    page
+  );
+
   const pipeline = [
     {
       $match: {
-        // between 7 and 10
         'imdb.rating': { $gte: 7, $lte: 10 },
         'awards.wins': { $gte: 10 },
         rated: { $nin: ['G', 'PG'] },
@@ -36,6 +45,15 @@ router.get('/best', (req, res) => {
         year: { $gte: new Date().getFullYear() - 10 },
         boxOffice: { $ne: parseFloat(100) },
       },
+    },
+    {
+      $sort: { boxOffice: -1 },
+    },
+    {
+      $skip: page * 10,
+    },
+    {
+      $limit: 10,
     },
   ];
 
