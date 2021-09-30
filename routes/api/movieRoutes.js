@@ -30,10 +30,7 @@ router.get('/year/:year'),
 // Route that will accept an aggregation query as the body and return the results sorted by box office
 router.get('/best/:page', (req, res) => {
   const { page } = req.params;
-  console.log(
-    '🚀 - file: movieRoutes.js - line 31 - router.get - pageNumber',
-    page
-  );
+  console.info('🚀 - file: movieRoutes.js - pageNumber', page);
 
   const pipeline = [
     {
@@ -47,10 +44,26 @@ router.get('/best/:page', (req, res) => {
       },
     },
     {
-      $skip: page * 10,
+      $group: {
+        _id: '$title',
+        title: { $first: '$title' },
+        year: { $first: '$year' },
+        rated: { $first: '$rated' },
+        poster: { $first: '$poster' },
+        fullplot: { $first: '$fullplot' },
+        boxOffice: { $first: '$boxOffice' },
+        imdb: { $first: '$imdb' },
+        metacritic: { $first: '$metacritic' },
+      },
     },
     {
-      $limit: 10,
+      $sort: { 'imdb.rating': -1 },
+    },
+    {
+      $skip: page * 20,
+    },
+    {
+      $limit: 20,
     },
   ];
 

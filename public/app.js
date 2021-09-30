@@ -7,11 +7,15 @@ const getMovies = async (page = 1) => {
   return movies;
 };
 
+// Helper function to generate a direct link to a movie
+const createLink = (id) => `https://www.imdb.com/title/tt${id}/`;
+
 const renderMovies = async () => {
   const movies = await getMovies(pageNumber);
 
   // empty out the target element
   targetEl.innerHTML = '';
+  console.log(movies);
 
   // document.getElementById('movies').innerHTML = '';
   movies.forEach((movie) => {
@@ -31,7 +35,7 @@ const renderMovies = async () => {
               <p>${movie.fullplot}</p>
             </div>
             <div class="card-action">
-              <a href="${movie.url}">Read more!</a>
+              <a href="${createLink(movie.imdb.id)}">Read more!</a>
             </div>
           </div>
         </div>
