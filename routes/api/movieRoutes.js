@@ -44,20 +44,19 @@ router.get('/best/:page', (req, res) => {
       },
     },
     {
-      $group: {
-        _id: '$title',
-        title: { $first: '$title' },
-        year: { $first: '$year' },
-        rated: { $first: '$rated' },
-        poster: { $first: '$poster' },
-        fullplot: { $first: '$fullplot' },
-        boxOffice: { $first: '$boxOffice' },
-        imdb: { $first: '$imdb' },
-        metacritic: { $first: '$metacritic' },
+      $project: {
+        title: 1,
+        year: 1,
+        rated: 1,
+        poster: 1,
+        fullplot: 1,
+        boxOffice: 1,
+        imdb: 1,
+        metacritic: 1,
       },
     },
     {
-      $sort: { 'imdb.rating': -1 },
+      $sort: { metacritic: -1 },
     },
     {
       $skip: page * 20,

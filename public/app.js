@@ -35,7 +35,9 @@ const renderMovies = async () => {
               <p>${movie.fullplot}</p>
             </div>
             <div class="card-action">
-              <a href="${createLink(movie.imdb.id)}">Read more!</a>
+              <a href="${
+                movie.imdb ? createLink(movie.imdb.id) : ''
+              }">Read more!</a>
             </div>
           </div>
         </div>
