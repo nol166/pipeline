@@ -45,6 +45,7 @@ router.get('/best/:page', (req, res) => {
     },
     {
       $project: {
+        _id: 0,
         title: 1,
         year: 1,
         rated: 1,

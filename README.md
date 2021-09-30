@@ -1,5 +1,9 @@
 # MongoDB Aggregation Pipeline
 
-Learning Objective:
+Check out one of the links for more information.
 
-* 🔑 Explain the aggregation pipeline and how it differs from MQL
+* [Notes](./docs/lesson.md)
+
+* [PDF](./docs/slides.pdf)
+
+* [Activity](./Solved/README.md)
