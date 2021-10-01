@@ -5,6 +5,10 @@
     "mongodb": "^4.1.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }

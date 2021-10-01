@@ -1,4 +1,4 @@
-# MongoDB Aggregation Pipeline 🔨
+# MongoDB Aggregation Pipeline 
 
 
 Work through the activity below by implementing the following user story:
@@ -7,7 +7,7 @@ Work through the activity below by implementing the following user story:
 
 ## Requirements:
 
-* It's done when I have completed the aggregation pipeline according to the following stages:
+* It's done when I have completed the aggregation pipeline in [Unsolved](../Unsolved/routes/api/movieRoutes.js) according to the following stages:
 
   * Stage 1: Match movies that have a genre of Action or Comedy and were released in the last 10 years.
 
