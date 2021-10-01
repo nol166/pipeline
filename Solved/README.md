@@ -11,7 +11,7 @@ Work through the activity below by implementing the following user story:
 
   * Stage 1: Match movies that have a genre of Action or Comedy and were released in the last 10 years.
 
-  * Stage 2: Exclude the _id field from the results. But include the `title`, `year`, `rated`, `poster`, `fullplot`, `imdb`, and `metacritic` fields
+  * Stage 2: Exclude the `_id` field from the results. But include the `title`, `year`, `rated`, `poster`, `fullplot`, `imdb`, and `metacritic` fields
 
   * Stage 3: Sort the results by the `metacritic` score in descending order.
 

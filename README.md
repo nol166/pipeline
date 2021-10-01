@@ -23,6 +23,9 @@ We can use the pipeline to sort the results, limit how many results we want, and
 * [Unsolved](./Unsolved/README.md)
 * [Slides](./doc/slides_2.pdf)
 
-## Useful links
+## Useful Links
+
 * [MongoDB Aggregation Pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/)
 * [MongoDB Query Language (MQL) Getting Started](https://www.mongodb.com/developer/how-to/getting-started-atlas-mongodb-query-language-mql/)
+* [MongoDB Aggregation Pipeline Quick Reference](https://docs.mongodb.com/manual/meta/aggregation-quick-reference/)
+* [How to Use MongoDB Sample Datasets](https://www.mongodb.com/basics/sample-database)
