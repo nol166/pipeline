@@ -16,6 +16,9 @@ Operators are used in the stages of the pipeline to manipulate and transform the
 
 We can use the pipeline to sort the results, limit how many results we want, and only consider the fields we want. This is a great tool that can best be understood by using it in a real world scenario.
 
+## Deployed Project
+https://pipeline-leaf.herokuapp.com/
+
 ## Map
 
 * [README.md](./Solved/README.md)
