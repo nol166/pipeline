@@ -5,7 +5,10 @@ const { client } = require('./db/connection');
 const port = process.env.PORT || 3000;
 
 client.on('open', () => {
+  console.log('Connected to MongoDB Atlas 🚀');
   app.use(express.json());
   app.use(routes);
-  app.listen(port, () => console.log('Server running on port 3000 🚀'));
+  app.listen(port, () =>
+    console.log('Server running on port http://localhost:3000 🚀')
+  );
 });
