@@ -7,15 +7,6 @@ exports.client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-// create index on imdb.rating
-// create index on awards.wins
-// create index on rated
-// create index on genres
-// create index on year
-// create index on boxOffice
-// create index on metacritic
-// create index on title
-
 client.connect((err) => {
   if (err) {
     console.log(err);

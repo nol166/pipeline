@@ -22,7 +22,7 @@ MongoDB uses **MongoDB Query Language (MQL)** to describe queries. MQL is a very
 
 Another term you will hear is the **aggregation pipeline**. This consists of a series of stages that are executed in order. Each stage describes the operation to be performed on the data. The results of each stage are passed to the next stage, refining, transforming, and aggregating the data as it goes.
 
-Operators are used in the stages of the pipeline to manipulate and transform the data. Some of the most common operators are `$match`, `$project`, `$group`, `$sort`, and `$limit`.
+**Aggregation Operators** (syntax prefixed by a dollar sign) are used in the stages of the pipeline to indicate instructions to manipulate and transform the data. Some of the most common operators are `$match`, `$project`, `$group`, `$sort`, and `$limit`.
 
 We can use the pipeline to sort the results, limit how many results we want, and only consider the fields we want. This is a great tool that can best be understood by using it in a real world scenario.
 
