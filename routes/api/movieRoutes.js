@@ -28,7 +28,7 @@ router.get('/year/:year'),
   };
 
 // Route that will accept an aggregation query as the body and return the results sorted by box office
-router.get('/best/:page', (req, res) => {
+router.get('/best/:page', async (req, res) => {
   const { page } = req.params;
   console.info('🚀 - file: movieRoutes.js - pageNumber', page);
 
@@ -38,7 +38,6 @@ router.get('/best/:page', (req, res) => {
         'imdb.rating': { $gte: 7, $lte: 10 },
         'awards.wins': { $gte: 10 },
         rated: { $nin: ['G', 'PG'] },
-        genres: { $in: ['Action', 'Comedy'] },
         year: { $gte: new Date().getFullYear() - 10 },
         boxOffice: { $ne: parseFloat(100) },
       },
@@ -67,11 +66,13 @@ router.get('/best/:page', (req, res) => {
     },
   ];
 
-  movies
-    .aggregate(pipeline)
-    .toArray((err, results) =>
-      err ? res.status(500).send(err) : res.status(200).send(results)
-    );
+  const result = await movies.aggregate(pipeline).toArray();
+  // if response is okay, send the results
+  if (result) {
+    res.status(200).send(result);
+  } else {
+    res.status(500).send('Error');
+  }
 });
 
 module.exports = router;

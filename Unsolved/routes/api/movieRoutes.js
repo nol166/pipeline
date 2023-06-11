@@ -3,7 +3,7 @@ const { client } = require('../../db/connection');
 
 const movies = client.db('sample_mflix').collection('movies');
 
-router.get('/best/:page', (req, res) => {
+router.get('/best/:page', async (req, res) => {
   const { page } = req.params;
 
   const pipeline = [
@@ -12,8 +12,6 @@ router.get('/best/:page', (req, res) => {
         'imdb.rating': { $gte: 7, $lte: 10 },
         'awards.wins': { $gte: 10 },
         rated: { $nin: ['G', 'PG'] },
-        // TODO: Match movies that have a genre of Action or Comedy
-
         // TODO: Match movies that have a release year within the last decade
       },
     },
@@ -35,11 +33,13 @@ router.get('/best/:page', (req, res) => {
     },
   ];
 
-  movies
-    .aggregate(pipeline)
-    .toArray((err, results) =>
-      err ? res.status(500).send(err) : res.status(200).send(results)
-    );
+  const result = await movies.aggregate(pipeline).toArray();
+  // if response is okay, send the results
+  if (result) {
+    res.status(200).send(result);
+  } else {
+    res.status(500).send('Error');
+  }
 });
 
 module.exports = router;
