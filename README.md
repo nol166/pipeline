@@ -28,7 +28,7 @@ We can use the pipeline to sort the results, limit how many results we want, and
 
 ## Deployed Project
 
-https://pipeline-leaf.herokuapp.com/
+https://pipeline-leaf.herokuapp.com/ (Heroku requires paid dynos to run Node.js apps, so this no longer works 😔)
 
 ## Map
 
